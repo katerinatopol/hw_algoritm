@@ -24,23 +24,23 @@
 company = {"amazon": 100500, "google": 200100, "apple": 80000, "yandex": 30000, "mail": 50000}
 
 
-# 1
+# 1  O(n^3)
 def top_company_1(dict_company):
-    top_company = []
-    profit = dict_company.values()
-    top = sorted(profit)[-3:]
-    for i in top:
-        for key, value in dict_company.items():
-            if value == i:
-                top_company.append(key)
-    return top_company
+    top_company = []   # O(n)
+    profit = dict_company.values()    # O(n)
+    top = sorted(profit)[-3:]      # O(1) O(n log n) O(n)
+    for i in top: # O (n^3)
+        for key, value in dict_company.items():     # O(n^2)
+            if value == i:      # O(n)
+                top_company.append(key)      # O(1)
+    return top_company      # O(1)
 
 
 print("\n".join(top_company_1(company)))
 print()
 
 
-# 2
+# 2   O(n^2)
 def top_company_2(dict_company):
     top_company = []                            # O(n)
     profit = list(dict_company.values())        # O(n)
@@ -56,10 +56,13 @@ print("\n".join(top_company_2(company)))
 print()
 
 
-# 3
+# 3  O(n log n)
 def top_company_3(dict_company):
     return [i[0] for i in sorted(dict_company.items(), key=lambda x: x[1])[-3:]]
     # O(1) O(n)[ O(n)    O(n log n) (              O(n),                 O(n)) ]      => O(n log n)
 
 
 print("\n".join(top_company_3(company)))
+
+
+# Оптимальным является 3 вариант решения, т.к. у него минимальный рост времени при росте входных данных.
