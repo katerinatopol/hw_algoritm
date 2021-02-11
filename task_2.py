@@ -22,22 +22,32 @@
 from random import randint
 
 
-my_list = [randint(0, 100) for el in range(10)]
-
-
 # O(n^2)
 def min_number_bad(numbers):
-    min_num = numbers[0]
-    for i in range(1, len(numbers)):
-        if numbers[i] < min_num:
-            min_num = numbers[i]
-    return min_num
+    for i in numbers:               # O(n)
+        test_min = i                # O(1)
+        for j in numbers:           # O(n)
+            if j < test_min:        # O(1)
+                test_min = j        # O(1)
+        return test_min             # O(1)
 
 
 # O(n)
-def min_number_good(numbers):
-    return min(numbers)
+def min_number_good1(numbers):
+    min_num = numbers[0]            # O(1)
+    for i in numbers:               # O(n)
+        if i < min_num:             # O(1)
+            min_num = i             # O(1)
+    return min_num                  # O(1)
 
+
+# O(n)
+def min_number_good2(numbers):
+    return min(numbers)             # return - O(1), min(lst) - O(n)
+
+
+my_list = [randint(0, 100) for el in range(10)]
 
 print(min_number_bad(my_list))
-print(min_number_good(my_list))
+print(min_number_good1(my_list))
+print(min_number_good2(my_list))
