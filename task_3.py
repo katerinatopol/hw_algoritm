@@ -40,22 +40,8 @@ print("\n".join(top_company_1(company)))
 print()
 
 
-# 2 O(n)
+# 2   O(n^2)
 def top_company_2(dict_company):
-    top_company = []                    # O(1)
-    for i in range(3):                  # O(1)
-        top = max(dict_company.items(), key=lambda x: x[1])[0]      # O(1), O(n), O(n)
-        top_company.append(top)         # O(1)
-        dict_company.pop(top)           # O(1)
-    return top_company                  # O(1)
-
-
-print("\n".join(top_company_2(company)))
-print()
-
-
-# 3   O(n^2)
-def top_company_3(dict_company):
     top_company = []                            # O(n)
     profit = list(dict_company.values())        # O(n)
     while len(profit) > 3:                      # O(n^2)
@@ -70,13 +56,27 @@ print("\n".join(top_company_2(company)))
 print()
 
 
-# 4  O(n log n)
-def top_company_4(dict_company):
+# 3  O(n log n)
+def top_company_3(dict_company):
     return [i[0] for i in sorted(dict_company.items(), key=lambda x: x[1])[-3:]]
     # O(1) - return, [O(1) - i[0], O(n) - for in,  O(n log n) - sorted, (O(n) - items(), O(n)) - срез ] => O(n log n)
 
 
 print("\n".join(top_company_3(company)))
+print()
 
 
-# Оптимальным является 2 вариант решения, т.к. у него минимальный рост времени при росте входных данных.
+# 4 O(n)
+def top_company_4(dict_company):
+    top_company = []                    # O(1)
+    for i in range(3):                  # O(1)
+        top = max(dict_company.items(), key=lambda x: x[1])[0]      # O(1), O(n), O(n)
+        top_company.append(top)         # O(1)
+        dict_company.pop(top)           # O(1)
+    return top_company                  # O(1)
+
+
+print("\n".join(top_company_4(company)))
+print()
+
+# Оптимальным является 4 вариант решения, т.к. у него минимальный рост времени при росте входных данных.
