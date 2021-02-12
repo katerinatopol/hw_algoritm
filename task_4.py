@@ -27,3 +27,34 @@
 который вы придумаете, например, реализовать словарь.
 """
 
+
+dict_users = {"user1": {"password": "12345", "active": True},
+              "user2": {"password": "54321", "active": False},
+              "user3": {"password": "abcdf", "active": False}}
+
+
+def activation(login, password):
+    pass
+
+
+# O(n)
+def authentication_1(users, login, password):
+    for key, value in users.items():        # O(n)
+        if key == login:                    # O(1)
+            if value["password"] == password and value["active"]:           # O(1)
+                return "Доступ к ресурсу предоставлен."                     # O(1)
+            elif value["password"] == password and not value["active"]:     # O(1)
+                user_answer = input("Учетная запись не активна, хотите активировать сейчас? Y/N : ")    # O(1)
+                if user_answer.lower() == "y":                      # O(1)
+                    return activation(login, password)       # вызов функции активации аккаунта
+                else:
+                    return "В доступе к ресурсу отказано"           # O(1)
+            elif value["password"] != password:                     # O(1)
+                return "Неверный пароль"                            # O(1)
+
+    return "Пользователь не зарегистрирован."                       # O(1)
+
+
+print(authentication_1(dict_users, "user1", "12345"))
+print(authentication_1(dict_users, "user2", "54321"))
+
