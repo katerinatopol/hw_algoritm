@@ -37,7 +37,7 @@ def activation(login, password):
     pass
 
 
-# O(n)
+# 1 O(n)
 def authentication_1(users, login, password):
     for key, value in users.items():        # O(n)
         if key == login:                    # O(1)
@@ -58,3 +58,25 @@ def authentication_1(users, login, password):
 print(authentication_1(dict_users, "user1", "12345"))
 print(authentication_1(dict_users, "user2", "54321"))
 
+
+# 2 O(1)
+def authentication_2(users, login, password):
+    if users.get(login):
+        if users[login]["password"] == password and users[login]["active"]:
+            return "Доступ к ресурсу предоставлен."
+        elif users[login]["password"] == password and not users[login]["active"]:
+            user_answer = input("Учетная запись не активна, хотите активировать сейчас? Y/N : ")
+            if user_answer.lower() == "y":
+                return activation(login, password)  # вызов функции активации аккаунта
+            else:
+                return "В доступе к ресурсу отказано"
+        elif users[login]["password"] != password:
+            return "Неверный пароль"
+    else:
+        return "Пользователь не зарегистрирован."
+
+
+print(authentication_2(dict_users, "user1", "12345"))
+print(authentication_2(dict_users, "user2", "54321"))
+
+# Лучше 2 решение, т.к. время выполнения не зависит от объема входных данных, время всегда константное.
