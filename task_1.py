@@ -40,22 +40,17 @@ def calc():
             two_number = int(input('Введите второе число: '))
             if operator == '+':
                 print(one_number + two_number)
-                return calc()
             elif operator == '-':
                 print(one_number - two_number)
-                return calc()
             elif operator == '*':
                 print(one_number * two_number)
-                return calc()
             elif operator == '/':
                 print(round(one_number / two_number))
-                return calc()
         except ZeroDivisionError as err:
             print(f'Возникла ошибка: {err}\nДеление на ноль. Попробуйте снова')
-            return calc()
         except ValueError as err:
             print(f'Возникла ошибка: {err}\nЭто не число. Попробуйте снова')
-            return calc()
+        return calc()
     else:
         print('Такого оператора не существует')
         return calc()
