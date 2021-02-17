@@ -18,7 +18,7 @@ def sum_n(n, number, count=0, sum_number=0):
     if n == count:
         return sum_number
     else:
-        return sum_n(n, number / 2 * -1, count + 1, sum_number + number)
+        return sum_n(n, number / -2, count + 1, sum_number + number)
 
 
 while True:
