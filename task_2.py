@@ -25,7 +25,7 @@ users = {}
 
 class Users:
 
-    def __init__(self, login, password):
+    def __init__(self, login, password: str):
         self.login = login
         self.password = create_hash(login, password)
         users.update({self.login: self.password})
@@ -33,8 +33,8 @@ class Users:
 
 def create_hash(salt, obj):
     hash_obj = pbkdf2_hmac(hash_name='sha256',
-                           password=obj.encode('utf-8'),
-                           salt=salt.encode('utf-8'),
+                           password=obj.encode(),
+                           salt=salt.encode(),
                            iterations=100000)
     return hash_obj
 

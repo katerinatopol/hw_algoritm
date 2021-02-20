@@ -14,5 +14,16 @@
 ара
 р
 а
-a
 """
+
+
+s = input('Введите строку, состоящую только из строчных латинских букв: ')
+n = len(s)
+result = set()
+
+for i in range(n):
+    for j in range(i + 1, n + 1):
+        if i != 0 or j != n:
+            result.add(hash(s[i:j]))
+
+print(f'Строка {s} содержит в себе {len(result)} уникальных подстрок')
