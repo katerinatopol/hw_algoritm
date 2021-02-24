@@ -16,9 +16,10 @@
 Укажите формулу сложности О-нотация каждого алгоритма
 и сделайте обоснвование рез-ам
 """
+from timeit import timeit
 
 
-def simple(i):
+def simple(i):      # O(n^2)
     """Без использования «Решета Эратосфена»"""
     count = 1
     n = 2
@@ -44,22 +45,11 @@ print(simple(i))
 
 def eratosthenes_sieve(n):
     """С использованием «Решета Эратосфена»"""
-    a = []
-    for i in range(n + 1):
-        a.append(i)
-    a[1] = 0
-    i = 2
-    while i <= n:
-        if a[i] != 0:
-            j = i + i
-            while j <= n:
-                a[j] = 0
-                j = j + i
-        i += 1
-    a = set(a)
-    a.remove(0)
-    return a
+    pass
 
 
-n = int(input())
-print(eratosthenes_sieve(n))
+print(
+    timeit(
+        'simple(i)',
+        setup='from __main__ import simple, i',
+        number=10000))
