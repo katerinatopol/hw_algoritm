@@ -24,17 +24,17 @@ def func_1(nums):
 
 
 def func_2(nums):
-    new_arr = [i for i in range(len(nums)) if i % 2 == 0]
-    return new_arr
+    return [i for i in nums if i % 2 == 0]
 
 
-test_list = [i for i in range(10000)]
+test_list = list(range(10000))
+
 print(timeit("func_1(test_list)", setup="from __main__ import func_1, test_list", number=1000))
 print(timeit("func_2(test_list)", setup="from __main__ import func_2, test_list", number=1000))
 
 """
-Для оптимизации я изпользовала списковое включение. Так как метод append является очень затратным, необходимо было от 
-него избавиться. Оптимизированный вариант в func_2. Время исполнения:
+Для оптимизации я изпользовала списковое включение. Это позволило избавиться от траты времени на append, range и создание переменных. 
+Оптимизированный вариант в func_2. Время исполнения:
 func_1   3.17613
 func_2   1.6733885000000002
 Соответственно списковое включении сократило время выполнения в два раза.
