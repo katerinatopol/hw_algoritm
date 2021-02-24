@@ -1,14 +1,10 @@
 """
 Задание 1.
-
 Приведен код, который позволяет сохранить в
 массиве индексы четных элементов другого массива
-
 Сделайте замеры времени выполнения кода с помощью модуля timeit
-
 Оптимизируйте, чтобы снизить время выполнения
 Проведите повторные замеры
-
 Добавьте аналитику: что вы сделали и почему!!!
 Без аналитики задание считается не принятым
 """
@@ -29,8 +25,17 @@ def func_2(nums):
 
 test_list = list(range(10000))
 
-print(timeit("func_1(test_list)", setup="from __main__ import func_1, test_list", number=1000))
-print(timeit("func_2(test_list)", setup="from __main__ import func_2, test_list", number=1000))
+print(
+    timeit(
+        "func_1(test_list)",
+        globals=globals(),
+        number=1000))
+
+print(
+    timeit(
+        "func_2(test_list)",
+        globals=globals(),
+        number=1000))
 
 """
 Для оптимизации я изпользовала списковое включение. Это позволило избавиться от траты времени на append, range и создание переменных. 
