@@ -4,26 +4,40 @@
 для оптимизации памяти и
 доказать!!! (наглядно, кодом) их эффективность (на примере профилировщика)
 """
-def some_func(d):
- #computations
-data = [1,2,..,10000] #large data
-for d in data:
- some_func(d)
-
- import multiprocessing
+from multiprocessing import Pool
 
 
- def some_func(d):
+def f(x):
+    return x*x
 
 
- # computations
- data = [1, 2,.., 10000]  # large data
- pool = multiprocessing.Pool(processes=number_of_processors)
- r = pool.map(some_func, data)
- pool.close()
+with Pool(5) as p:
+    print(p.map(f, [1, 2, 3]))
 
- """
- Пользуйтесь многопроцессорной обработкой
+# Плохой вариант
+# def some_func(element):
+#     element *= 2
+#     return element
+#
+#
+# data = range(1000000)  # large data
+# for d in data:
+#     some_func(d)
+#
+#
+# # Хороший вариант
+# def some_func_2(element):
+#     element *= 2
+#     return element
+#
+#
+# data = range(1000000)  # large data
+# pool = multiprocessing.Pool(processes=2)
+# r = pool.map(some_func, data)
+# pool.close()
+
+"""
+Пользуйтесь многопроцессорной обработкой
 Если ваш компьютер выполняет более одного процесса, тогда присмотритесь к многопроцессорной обработке в Python.
 Она разрешает распараллеливание в коде. Многопроцессорная обработка весьма затратна, поскольку вам придется 
 инициировать новые процессы, обращаться к общей памяти и т.д., поэтому пользуйтесь ей только для большого 
