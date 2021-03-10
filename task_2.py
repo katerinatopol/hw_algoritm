@@ -38,13 +38,12 @@ def merge(left, right):
 
 
 def merge_sort(array):
-    copy_list = array
-    if len(copy_list) < 2:
-        return copy_list
-    midpoint = len(copy_list) // 2
+    if len(array) < 2:
+        return array
+    midpoint = len(array) // 2
     return merge(
-        left=merge_sort(copy_list[:midpoint]),
-        right=merge_sort(copy_list[midpoint:]))
+        left=merge_sort(array[:midpoint]),
+        right=merge_sort(array[midpoint:]))
 
 
 numb = int(input('Введите число элементов: '))
@@ -81,7 +80,6 @@ print(timeit('merge_sort(orig_list[:])',
 Длина массива 10: 0.03316680000000005
 Длина массива 100: 0.37318260000000025
 Длина массива 1000: 5.461328
-
 В данной реализации алгоритм разделен на две части(функции). По существу он не сильно отличается от предложенного
 в методичке, хотя и выглядит совсем по другому. 
 Результаты такой сортировки значительно превосходят результаты из первого задания(пузырьковую сортировку).
