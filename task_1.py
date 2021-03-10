@@ -23,28 +23,26 @@ import random
 
 def bubble_sort_waning(lst_obj):
     n = 1
-    copy_list = lst_obj.copy()
-    while n < len(copy_list):
-        for i in range(1, len(copy_list)):
-            if copy_list[i] > copy_list[i - 1]:
-                copy_list[i], copy_list[i - 1] = copy_list[i - 1], copy_list[i]
+    while n < len(lst_obj):
+        for i in range(1, len(lst_obj)):
+            if lst_obj[i] > lst_obj[i - 1]:
+                lst_obj[i], lst_obj[i - 1] = lst_obj[i - 1], lst_obj[i]
         n += 1
-    return copy_list
+    return lst_obj
 
 
 def bubble_sort_waning_2(lst_obj):
     n = 1
     change = 0
-    copy_list = lst_obj.copy()
-    while n < len(copy_list):
-        for i in range(1, len(copy_list)):
-            if copy_list[i] > copy_list[i - 1]:
-                copy_list[i], copy_list[i - 1] = copy_list[i - 1], copy_list[i]
+    while n < len(lst_obj):
+        for i in range(1, len(lst_obj)):
+            if lst_obj[i] > lst_obj[i - 1]:
+                lst_obj[i], lst_obj[i - 1] = lst_obj[i - 1], lst_obj[i]
                 change += 1
         if change == 0:
             break
         n += 1
-    return copy_list
+    return lst_obj
 
 
 # замеры 10
@@ -110,7 +108,6 @@ print(
 Массив 1000:
 164.65353620000002
 178.75705509999997
-
 В качестве доработки я добавила переменную change, которая изменяется при переставлении элементов, и также
 добавила ветку if с выходом из цикла если change осталась неизменной после прохода по списку.
 Так как функции возвращают копию списка результаты корректны. При это время выполнения практически одинаковое.
