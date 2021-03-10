@@ -49,27 +49,27 @@ def merge_sort(array):
 
 numb = int(input('Введите число элементов: '))
 orig_list = [random.uniform(0, 50) for _ in range(numb)]
-sorted_list = merge_sort(orig_list)
+sorted_list = merge_sort(orig_list[:])
 print(f'Исходный массив: {orig_list}')
 print(f'Отсортированный: {sorted_list}')
 
 # замеры 10
 orig_list = [random.uniform(0, 50) for _ in range(10)]
 print(timeit(
-    'merge_sort(orig_list)',
+    'merge_sort(orig_list[:])',
     globals=globals(),
     number=1000))
 
 # замеры 100
 orig_list = [random.uniform(0, 50) for _ in range(100)]
 print(timeit(
-    'merge_sort(orig_list)',
+    'merge_sort(orig_list[:])',
     globals=globals(),
     number=1000))
 
 # замеры 1000
 orig_list = [random.uniform(0, 50) for _ in range(1000)]
-print(timeit('merge_sort(orig_list)',
+print(timeit('merge_sort(orig_list[:])',
              globals=globals(),
              number=1000))
 

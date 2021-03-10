@@ -49,8 +49,8 @@ def bubble_sort_waning_2(lst_obj):
 
 # замеры 10
 orig_list = [random.randint(-100, 100) for _ in range(10)]
-waning_list = bubble_sort_waning(orig_list)
-waning_list_2 = bubble_sort_waning_2(orig_list)
+waning_list = bubble_sort_waning(orig_list[:])
+waning_list_2 = bubble_sort_waning_2(orig_list[:])
 print(f'Исходный массив: {orig_list}\n'
       f'Отсортированный массив: {waning_list}\n'
       f'Отсортированный массив (оптимизированная ф-я): {waning_list_2}')
