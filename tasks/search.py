@@ -13,8 +13,7 @@ def binary_search(array, target):
             array = array[:ind]
         else:
             array = array[ind + 1:]
-        print(array, el)
-        print('шаг')
+
         return binary_search(array, target)
 
 
